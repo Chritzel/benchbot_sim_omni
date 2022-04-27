@@ -255,7 +255,7 @@ class SimulatorDaemon:
         # Start the simulator
         self.inst = SimulationApp({
             "renderer": "RayTracedLighting",
-            "headless": False,
+            "headless": True,
             **env
         })
 
@@ -263,6 +263,8 @@ class SimulatorDaemon:
         from omni.isaac.core.utils.extensions import enable_extension
         from omni.kit.viewport import get_default_viewport_window
         enable_extension("omni.isaac.ros_bridge")
+        enable_extension("omni.isaac.sim.headless.base")
+        enable_extension("omni.services.streamclient.websocket")
 
         # Attempt to place the robot if we had a map
         if env:
